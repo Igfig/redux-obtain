@@ -2,7 +2,7 @@
 
 `redux-obtain` makes a bunch of assumptions about how your endpoint will respond.
 
-1. Pagination details are sent to your endpoint in the request body through a POST request.
+1. Pagination details are sent to your endpoint in the URL params. This can be any kind of request (GET, POST, etc).
 2. Sending `offset: 0` and `limit: 100` in the request body will have the endpoint respond with the first 100 results
 3. Sending `orderBys: [{ column: 'columnKey', direction: 'ASC' }]` to the endpoint will result in the results being sorted on the column `columnKey` in an Ascending order.
 4. The endpoint responds with a `totalCount` field which contains an integer that indicates the total number of entries this paginated resources has.
@@ -36,7 +36,7 @@ const LongList = ({ data, loading, error, paginationFunctions }) => {
 
 const LongListContainer = fetcher({
     name: "LONG_LIST",
-    // method: POST is not required because all paginated calls are POST requests
+    method: "GET",
     endpoint: "/long_list",
     paginationKey: "list", // IMPORTANT: the presence of this key is what enables pagination
     defaultOrderBys: []

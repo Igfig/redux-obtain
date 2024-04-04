@@ -82,7 +82,7 @@ export const fetcher = (props, extraActions) => WrappedComponent =>
                 const paginationQuery = this.props.paginationKey
                     ? qs.stringify({ limit, offset, sort })
                     : ""
-                const requestMethod = this.props.paginationKey ? "GET" : this.props.method || "GET"
+                const requestMethod = this.props.method || "GET"
                 const requestEndpoint = endpoint || this.props.endpoint
                 this.networkRequest = new Promise((res, rej) =>
                     fetch(
